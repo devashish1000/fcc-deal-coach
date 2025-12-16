@@ -14,7 +14,231 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      deals: {
+        Row: {
+          account: string
+          close_date: string
+          created_at: string
+          days_in_stage: number
+          health_score: number
+          health_status: string
+          health_trend: string
+          id: string
+          name: string
+          owner: string
+          stage: string
+          updated_at: string
+          user_id: string
+          value: number
+        }
+        Insert: {
+          account: string
+          close_date: string
+          created_at?: string
+          days_in_stage?: number
+          health_score?: number
+          health_status?: string
+          health_trend?: string
+          id?: string
+          name: string
+          owner: string
+          stage?: string
+          updated_at?: string
+          user_id: string
+          value?: number
+        }
+        Update: {
+          account?: string
+          close_date?: string
+          created_at?: string
+          days_in_stage?: number
+          health_score?: number
+          health_status?: string
+          health_trend?: string
+          id?: string
+          name?: string
+          owner?: string
+          stage?: string
+          updated_at?: string
+          user_id?: string
+          value?: number
+        }
+        Relationships: []
+      }
+      field_resolution_history: {
+        Row: {
+          deal_id: string
+          field_name: string
+          id: string
+          resolved_at: string
+          score_impact: number
+          user_id: string
+        }
+        Insert: {
+          deal_id: string
+          field_name: string
+          id?: string
+          resolved_at?: string
+          score_impact?: number
+          user_id: string
+        }
+        Update: {
+          deal_id?: string
+          field_name?: string
+          id?: string
+          resolved_at?: string
+          score_impact?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "field_resolution_history_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      health_score_history: {
+        Row: {
+          deal_id: string
+          id: string
+          recorded_at: string
+          score: number
+          status: string
+        }
+        Insert: {
+          deal_id: string
+          id?: string
+          recorded_at?: string
+          score: number
+          status: string
+        }
+        Update: {
+          deal_id?: string
+          id?: string
+          recorded_at?: string
+          score?: number
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "health_score_history_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      missing_fields: {
+        Row: {
+          created_at: string
+          deal_id: string
+          description: string | null
+          id: string
+          impact: number
+          name: string
+          resolved: boolean
+          resolved_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          deal_id: string
+          description?: string | null
+          id?: string
+          impact?: number
+          name: string
+          resolved?: boolean
+          resolved_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          deal_id?: string
+          description?: string | null
+          id?: string
+          impact?: number
+          name?: string
+          resolved?: boolean
+          resolved_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "missing_fields_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_settings: {
+        Row: {
+          ai_coach_tone: string
+          created_at: string
+          id: string
+          selected_role: string
+          strict_validation: boolean
+          updated_at: string
+          use_ai: boolean
+          use_cloud: boolean
+          user_id: string
+        }
+        Insert: {
+          ai_coach_tone?: string
+          created_at?: string
+          id?: string
+          selected_role?: string
+          strict_validation?: boolean
+          updated_at?: string
+          use_ai?: boolean
+          use_cloud?: boolean
+          user_id: string
+        }
+        Update: {
+          ai_coach_tone?: string
+          created_at?: string
+          id?: string
+          selected_role?: string
+          strict_validation?: boolean
+          updated_at?: string
+          use_ai?: boolean
+          use_cloud?: boolean
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
